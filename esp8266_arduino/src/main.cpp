@@ -2,16 +2,30 @@
 
 void setup()
 {
-  lcdSetup(&lcd);
+  setupSerial();
+  lcdSetup(&lcd);//init lcd 16x2
+
+
 }
 
 void loop()
 {
     lucky();
+
+
 }
 
-// place to implement function for main
+// ========= IMPLEMENTATION FOR MAIN ==============
+
+
+
+void setupSerial(){
+  Serial.begin(SERIAL_INIT);//init serial logger
+  Serial.println("RUN : setup");
+}
+// demo lcd_16x2
 void lucky(){
+  Serial.println("LCD: demoPrint");
   demoPrint(&lcd);
   delay(1000);
   lcd.clear();

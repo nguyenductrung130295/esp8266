@@ -1,0 +1,18 @@
+setup environment
+
+- install arduino ide
+- file -> reference-> setting tab -> additional board manager urls: http://arduino.esp8266.com/stable/package_esp8266com_index.json-->ok
+- tools -> manager board -> enter esp8266 or 8266 -> install
+
+- install git
+
+- install vscode
+- install PlatformIO for vscode
+- open home PlatformIO
+    - select boards -> search esp8266 -> install
+
+
+- clone project
+- add project to vscode
+- open folder .vscode, open c_cpp_properties.json to add path of package or library be missing
+
