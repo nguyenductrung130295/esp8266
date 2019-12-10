@@ -1,0 +1,22 @@
+// build to app production, the app is created in dist folder
+ng build --prod
+
+// install firebase tools
+npm install -g firebase-tools
+// login
+firebase login
+// go to root folder, init for first
+firebase init
+
+// using space key to select options and enter to choose
+// next : firebase cli feature : hosting
+// next : select web app
+// next : public direct  : type the path of dist folder
+// overwrite index, error : No
+
+
+// deploy
+firebase deploy
+
+
+// access the url of host url to see the app
