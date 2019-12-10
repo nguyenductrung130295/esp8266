@@ -9,6 +9,8 @@
 
 // setup
 void lcdSetup(LiquidCrystal *lcd);
+// print message at row and column
+void lcdPrintMessageAt(LiquidCrystal *lcd, String message, short row, short col);
 
 // demo
-void demoPrint(LiquidCrystal *lcd);
+void lcdDemoPrint(LiquidCrystal *lcd);

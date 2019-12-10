@@ -4,29 +4,73 @@ void setup()
 {
   setupSerial();
   lcdSetup(&lcd);//init lcd 16x2
+  // setupPinMode();//setup pin mode input output
+  setupPinMode();
 
 
 }
 
 void loop()
 {
-    lucky();
-
-
+  fadeLedByPWMPin(pwmPinFadeLed);
+  turnOnYellowLight();
+  readAnalogPin();
+  delay(1000);
+  // lucky();
 }
 
-// ========= IMPLEMENTATION FOR MAIN ==============
+// =========SETUP IMPLEMENTATION FOR MAIN ==============
 
 
+// setup pin mode input output
+void setupPinMode(){
+  //input
+  pinMode(PIN_INPUT_CLICK_BUTTON, INPUT);
+  //output
+  pinMode(PIN_OUTPUT_YELLOW_LED, OUTPUT);
+  pinMode(pwmPinFadeLed, OUTPUT);
+}
 
-void setupSerial(){
-  Serial.begin(SERIAL_INIT);//init serial logger
-  Serial.println("RUN : setup");
+
+// ========== LOOP IMPLEMENTATION FOR MAIN==========================
+void turnOnYellowLight(){
+  // read the state of the pushbutton value:
+  buttonD0State = digitalRead(PIN_INPUT_CLICK_BUTTON);
+
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+  if (buttonD0State == HIGH) {
+    // turn LED on:
+    digitalWrite(PIN_OUTPUT_YELLOW_LED, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(PIN_OUTPUT_YELLOW_LED, LOW);
+  }
+}
+void fadeLedByPWMPin(uint8_t pwmPin){
+  int brightness = 0;    // how bright the LED is
+  int fadeAmount = 5;    // how many points to fade the LED by
+  for (; brightness < 225; brightness += fadeAmount){
+    // wait for 30 milliseconds to see the dimming effect
+    analogWrite(pwmPin, brightness);
+    delay(100);
+  }
+}
+
+void readAnalogPin(){
+  int analogValue = analogRead(A0);
+  Serial.println(analogValue);
+  lcdPrintMessageAt(&lcd, String(analogValue), 1, 0);
+}
+//
+void onClickBtnOpenRedLight(){
+  int buttonState = digitalRead(PIN_INPUT_CLICK_BUTTON);
+  Serial.println(buttonState);
+  lcdPrintMessageAt(&lcd, String(buttonState), 1, 0);
 }
 // demo lcd_16x2
 void lucky(){
   Serial.println("LCD: demoPrint");
-  demoPrint(&lcd);
+  lcdDemoPrint(&lcd);
   delay(1000);
   lcd.clear();
   delay(1000);
