@@ -38,6 +38,7 @@
 //declare libray
 #include <common/commons.h>
 #include <lcd-control/esp-lcd-16x2.h>
+#include <wifi-control/wifi-control.h>
 
 
 //main config and const
@@ -45,6 +46,8 @@
 #define PIN_OUTPUT_YELLOW_LED D7
 LiquidCrystal lcd(12,0,5,4,3,2);//declare pin number of arduino for rs, en, d4, d5, d6, d7 LCD16x2 pin
 int buttonD0State = 0;         // variable for reading the pushbutton status
+const char* WIFI_SSID = "Tien";
+const char* WIFI_PASSWORD = "99999999";
 
 // declare global main variable
 uint8_t analogMode = OUTPUT;

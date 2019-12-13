@@ -3,6 +3,7 @@
 void setup()
 {
   setupSerial();
+  connectWifi(WIFI_SSID, WIFI_PASSWORD);
   lcdSetup(&lcd);//init lcd 16x2
   // setupPinMode();//setup pin mode input output
   setupPinMode();
