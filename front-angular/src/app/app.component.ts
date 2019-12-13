@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';//database firestore
+import { AngularFireDatabase } from '@angular/fire/database';// database realtime
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +12,13 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   items: Observable<any[]>;
   title = 'front-angular';
-  constructor(db: AngularFirestore) {
-    this.items = db.collection('items').valueChanges();
+  // constructor(db: AngularFirestore) {
+  //   this.items = db.collection('items').valueChanges();
+  // }
+
+  // inject firebaseDatabase
+  constructor(db: AngularFireDatabase) {
+    this.items = db.list('items').valueChanges();
+    console.log(this.items);
   }
 }
