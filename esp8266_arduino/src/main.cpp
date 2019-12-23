@@ -3,12 +3,11 @@
 void setup()
 {
   setupSerial();
-  connectWifi(WIFI_SSID, WIFI_PASSWORD);
+  // connectWifi(WIFI_SSID, WIFI_PASSWORD);
   lcdSetup(&lcd);//init lcd 16x2
-  // setupPinMode();//setup pin mode input output
-  setupPinMode();
-
-
+  setupPinMode();//setup pin mode input output
+  // connectFirebase(FIRE_B_HOST_URL, FIRE_B_AUTH_KEY);
+  // readAndWriteDataWithFirebase();
 }
 
 void loop()
@@ -34,6 +33,46 @@ void setupPinMode(){
 
 
 // ========== LOOP IMPLEMENTATION FOR MAIN==========================
+void readAndWriteDataWithFirebase(){
+  if (handleReqFb(Firebase.getInt(firebaseData, "/led"), &firebaseData)) {
+    Serial.println("red 1");
+    if  (firebaseData.dataType() == "int") {
+      Serial.println(firebaseData.dataType());
+      int val = firebaseData.intData();
+      // if (val != redValue) {
+      //   redValue = val;
+      //   setLedColor();
+      Serial.println(val);
+      // }
+    }
+  }
+  if (handleReqFb(Firebase.setInt(firebaseData, "/led", 444), &firebaseData)) {
+    Serial.println("set red");
+    // if  (firebaseData.dataType() == "int") {
+    //   Serial.println(firebaseData.dataType());
+    //   int val = firebaseData.intData();
+    //   // if (val != redValue) {
+    //   //   redValue = val;
+    //   //   setLedColor();
+    //   Serial.println(val);
+    //   // }
+    // }
+  }
+
+  if (handleReqFb(Firebase.getInt(firebaseData, "/led"), &firebaseData)) {
+    Serial.println("red 2");
+    if  (firebaseData.dataType() == "int") {
+      Serial.println(firebaseData.dataType());
+      int val = firebaseData.intData();
+      // if (val != redValue) {
+      //   redValue = val;
+      //   setLedColor();
+      Serial.println(val);
+      // }
+    }
+  }
+}
+
 void turnOnYellowLight(){
   // read the state of the pushbutton value:
   buttonD0State = digitalRead(PIN_INPUT_CLICK_BUTTON);

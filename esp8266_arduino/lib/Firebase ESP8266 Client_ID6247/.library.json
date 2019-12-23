@@ -1,0 +1,39 @@
+{
+    "description": "Google Firebase Realtime Database Arduino Client Library for Espressif ESP8266", 
+    "repository": {
+        "url": "https://github.com/mobizt/Firebase-ESP8266", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "espressif8266"
+    ], 
+    "export": {
+        "exclude": [
+            "extras", 
+            "docs", 
+            "tests", 
+            "test", 
+            "*.doxyfile", 
+            "*.pdf"
+        ], 
+        "include": null
+    }, 
+    "authors": [
+        {
+            "maintainer": true, 
+            "name": "Mobizt", 
+            "url": null, 
+            "email": "k_suwatchai@hotmail.com"
+        }
+    ], 
+    "keywords": [
+        "communication"
+    ], 
+    "id": 6247, 
+    "name": "Firebase ESP8266 Client", 
+    "frameworks": [
+        "arduino"
+    ], 
+    "version": "2.7.6", 
+    "homepage": null
+}
