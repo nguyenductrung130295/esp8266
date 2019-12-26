@@ -1,0 +1,9 @@
+<div class="card" (click)="onClickCard($event)">
+    <div *ngIf="!hasHeader ? false : true" class="card-header">{{hasHeader}}</div>
+    <div class="card-body">
+        <ng-content #name></ng-content>
+    </div>
+    <div *ngIf="hasFooter" class="card-footer">
+
+    </div>
+</div>

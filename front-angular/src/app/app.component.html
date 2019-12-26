@@ -1,6 +1,23 @@
-<h1 class="col-12">Hello Firebase And Angular {{led|async}}</h1>
-<ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item}}
-  </li>
-</ul>
+ <ng-container *ngIf="authService.afAuth.user | async as user; else elseTemplate">
+  <div class="container-fluid">
+    <div class="row border-bottom">
+      <div class="col-1">
+        <img src="{{authService.photoURL}}" class="photoUser">
+      </div>
+      <div class="col-7">{{authService.displayName}}</div>
+      <div class="col-2">10:32:01
+      </div>
+      <div class="col-2"><i (click)="authService.logout()" class="fas fa-power-off fa-2x text-danger"></i></div>
+    </div>
+    <app-chicken-farm></app-chicken-farm>
+  </div>
+</ng-container>
+<ng-template #elseTemplate>
+  <div class="container-fluid">
+    <h3>Chicken Farm 0.1</h3>
+    <div *ngIf="!isLogging">
+      <p>please login</p>
+      <button class="btn btn-primary" (click)="authService.login()"><i class="fas fa-power-off"></i>  Login with Google</button>
+    </div>
+  </div>
+</ng-template>

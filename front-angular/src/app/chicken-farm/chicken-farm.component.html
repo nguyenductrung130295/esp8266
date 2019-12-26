@@ -1,0 +1,43 @@
+<h3 class="text-success">Chicken Smart 0.1</h3>
+<hr>
+<div class="row">
+  <div class="col-sm-4 mb-3" *ngFor="let item of items">
+    <app-card hasHeader="{{item.key}}">
+        <div class="row">
+          <div class="col-4"><i class="fas fa-chess-bishop fa-5x" [ngClass]="{'text-info': item.drink, 'text-secondary': !item.drink}"></i></div>
+          <div class="col-8">
+            <div *ngIf="item.drink; else offDrink">Nước vẫn còn</div>
+            <ng-template #offDrink>
+              <div>Nước đã hết</div>
+            </ng-template>
+          </div>
+        </div>
+        <hr>
+        <div class="row" (click)="feedChicken(item)">
+          <div class="col-4"><i class="fas fa-archive fa-5x text-secondary" [ngClass]="{'text-success': item.eat, 'text-secondary': !item.eat}"></i></div>
+          <div class="col-8">
+            <div *ngIf="item.eat; else offEat">Thức ăn vẫn còn</div>
+            <ng-template #offEat>
+              <div>Thức ăn đã hết</div>
+            </ng-template>
+            <div *ngIf="item.eat && item.feeding"><i class="fas fa-circle text-success"></i>  Đang cho ăn</div>
+          </div>
+        </div>
+        <hr>
+        <div class="row" (click)="turnOnOffLight(item)">
+          <div class="col-4"><i class="fas fa-lightbulb fa-5x" [ngClass]="{'text-warning': item.light, 'text-secondary': !item.light}"></i></div>
+          <div class="col-8">
+            <div *ngIf="item.light; else offLight">Đèn đã bật</div>
+            <ng-template #offLight>
+              <div>Đèn đã tắt</div>
+            </ng-template>
+          </div>
+        </div>
+    </app-card>
+  </div>
+</div>
+  <!-- <ul>
+    <li class="text" *ngFor="let item of items | async">
+      {{item | json}}
+    </li>
+  </ul> -->
