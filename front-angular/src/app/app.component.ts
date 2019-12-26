@@ -10,7 +10,7 @@ import { UrlService } from './services/url.service';
 export class AppComponent implements OnInit {
 
   isLogging = false;
-  constructor(private authService: AuthenticationService, private urlService: UrlService) {
+  constructor(public authService: AuthenticationService, private urlService: UrlService) {
   }
 
   ngOnInit(): void {

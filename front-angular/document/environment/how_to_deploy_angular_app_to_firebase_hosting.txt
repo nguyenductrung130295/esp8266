@@ -15,6 +15,10 @@ firebase init
 // overwrite index, error : No
 
 
+////////////////////////////////////////////////////
+// rebuild before deploy
+ng build --prod
+
 // deploy
 firebase deploy
 
